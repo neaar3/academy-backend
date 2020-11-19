@@ -1,20 +1,8 @@
 const database = require("../utils/database");
 
-const criarTabelaDeClientes = async () => {
-    const criarTabela = `CREATE TABLE IF NOT EXISTS clientes (
-        id SERIAL,
-        nome TEXT,
-        cpf VARCHAR(14),
-        email VARCHAR(40),
-        tel VARCHAR(14)
-    );`
-
-    return database.query(criarTabela);
-};
-
-const criarNovoCliente = async (nome, cpf, email, tel) => {
-    const criarCliente = `INSERT INTO clientes (nome, cpf, email, tel) 
-        VALUES (${nome}, ${cpf}, ${email}, ${tel});`
+const criarNovoCliente = async (nome, cpf, email, telefone, idDoUsuario) => {
+    const criarCliente = `INSERT INTO clientes (nome, cpf, email, telefone, idDoUsuario) 
+        VALUES (${nome}, ${cpf}, ${email}, ${telefone}, ${idDoUsuario});`
 
     return database.query(criarCliente);
 }
@@ -36,4 +24,4 @@ const listarClientes = async () => {
     return result.rows;
 }
 
-module.exports = {criarTabelaDeClientes, criarNovoCliente, editarCliente, listarClientes}
+module.exports = {criarNovoCliente, editarCliente, listarClientes}
